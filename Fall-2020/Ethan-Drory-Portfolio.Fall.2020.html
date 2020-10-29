@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!--
+
+    Hello! Glad your here to have a peak.
+    It's important we hold each other accountable,
+    I vouch that this document doesnt not contain any code that targets the user
+    for any purpose of any kind include anylitics, or malicious reasons.
+
+    This file can be compared againts the github masters sorted by edition
+    <<<<<<URL>>>>>
+
+    If you have any issues, consernces, or would just like to chat
+    you can always reach me at:
+    ethan.drory@gmail.com
+
+ -->
+
+<head>
+  <meta charset="utf-8">
+  <title>Ethan Drory Portfolio Fall 2020</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📕</text></svg>">
+</head>
+<style media="screen">
+  /* import google font style and weights */
+  @import url('http://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+
+  /* master styling */
+  :root {
+
+    /* color variables */
+    --main-bg-color: #F0F0F0;
+    --main-box-bg-color: #E8E8E8;
+    --text-basic-color: #1d1d1d;
+    --link-basic-text-color: #ed5838;
+    --status-bg-connected: #C3F1E1;
+    --status-bg-disconnected: #ed5838;
+
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    background-color: var(--main-bg-color);
+  }
+
+  /* handle User Agent Style sheet */
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-weight:300;
+    color: var(--text-basic-color);
+    z-index: 200;
+  }
+
+  /* figma container styles */
+  iframe {
+    border: none;
+    overflow:hidden;
+    z-index: -100;
+    transform: translate(0, 0px);
+  }
+
+  /* in line link text styling */
+  a {
+    outline: none;
+    text-decoration: none;
+    color: var(--link-basic-text-color);
+  }
+
+  /*  pill shaped tag list   */
+  span.tags {
+    opacity:50%;
+    font-size: .65rem;
+    background-color: white;
+    padding: .1rem .3rem .1rem;
+    border-radius: 1rem;
+
+  }
+
+/* end of master styling */
+
+
+  /* main view  */
+  main.mainView {}
+
+  /* Landing grid conatiner master styling */
+  .landing {}
+
+  /* landing grid containers */
+  .landing.item1 {
+    grid-area: landingSideWall1;
+  }
+
+  .landing.item2 {
+    grid-area: landingCenter;
+    height: 75vh;
+    padding: 10vh .4rem;
+  }
+
+  .landing.item3 {
+    grid-area: landingSideWall3;
+  }
+
+  /*loading grid & more for landingContainer */
+  #landingContainer {
+    display: grid;
+    grid-template-columns: minmax(1px, 3fr) auto minmax(1px, 3fr);
+    grid-template-areas:
+      'landingSideWall1 landingCenter landingSideWall3';
+  }
+
+  /* portfolio list gird and item*/
+  .portfolio-list.container{
+    display: grid;
+    gap: 10px 0px;
+    grid-template-columns: auto;
+    grid-template-row: minmax(auto, auto);
+  }
+
+  .portfolio-list.container a {
+    outline: none;
+    text-decoration: none;
+    color: var(--text-basic-color);
+    background-color: var(--main-box-bg-color);
+  }
+
+  .portfolio-list.item{
+    display: grid;
+    grid-template-columns: 100px 65% auto;
+    grid-template-rows: 25px 75px;
+    gap: 0px 10px;
+    grid-template-areas:
+      "img name date"
+      "img details details";
+  }
+
+  .portfolio-list.item .img {
+    grid-area: 'img';
+  }
+
+  .portfolio-list.item .title {
+    grid-area: 'name';
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+
+  .portfolio-list.item .date {
+    grid-area: 'date';
+    font-size: .7rem;
+  }
+
+  .portfolio-list.item .details {
+    grid-area: 'details';
+    font-size: .9rem;
+  }
+
+
+  /* footer style */
+  .landing.footer{
+    bottom: 5;
+    font-size: .7rem;
+  }
+
+  .landing.footer.connected{
+    color:green;
+  }
+
+  .landing.footer.disconnected{
+    color:red;
+  }
+
+
+  /* portfolio project template view grid */
+  .projectGrid-container {
+    padding-top: 5vh;
+    display: grid;
+    grid-template-columns: minmax(1px, 3fr)  65%  minmax(1px, 3fr);
+    grid-template-rows: auto auto;
+    gap: 0px 0px;
+    grid-template-areas:
+      ". project-navbar ."
+      ". project-view-container .";
+
+    z-index: 900;
+  }
+
+  .project-navbar { grid-area: project-navbar; }
+
+  .project-view-container { grid-area: project-view-container; }
+
+  .project-navbar-container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto;
+    gap: 0px 0px;
+  }
+
+
+  /* project text styling */
+  .top-subTitle{
+    font-size: .7rem;
+  }
+
+  .bottom-Title{
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  .bottom-subTitle{
+    font-size: 1.3rem;
+  }
+
+
+
+    /* project buttom styling */
+    button {
+      border: none;
+    }
+
+    .buttonFullScreen, .buttonBackHome {
+      border: none;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: #ffffff;
+      border-color: #ffffff !important;
+      display: inline-block;
+      transition: all 0.4s ease 0s;
+   }
+
+   .buttonFullScreen:hover, .buttonBackHome:hover {
+     color: #ffffff !important;
+     background: #f6b93b;
+     border-color: #f6b93b !important;
+     transition: all 0.4s ease 0s;
+  }
+
+
+
+
+</style>
+
+<body>
+
+  <!-- main viewer -->
+  <main id="mainView">
+
+    <!-- container for everything in view -->
+    <div id="landingContainer">
+
+      <div class="landing item1"></div>
+
+      <div class="landing item2">
+
+        <!-- intro text  -->
+        <span class="top-subTitle" >Fall 2020</span><br>
+        <span class="bottom-Title">Ethan Drory</span> | <span class="bottom-subTitle">Portfolio</span>
+        <p>Thank you for taking the time to look at my portfolio.
+          You can always find the most recent version:
+          <a href="https://github.com/" target="_blank">here</a>
+        </p>
+        <p>If you have questions, inquires, or issues please contact me:
+          <a href="mailto:ethan.drory@gmail.com">ethan.drory@gmail.com</a>
+        </p>
+
+
+        <!-- portfolio list -->
+        <div class="portfolio-list container">
+
+          <!-- start of list item -->
+          <a href="#" onclick="loadTargetProject('Resume')" class="portfolio-list item">
+            <div class="img">
+              <svg width="100px" height="100px">
+                <rect width="100" height="100" style="fill:rgb(255, 255, 255);" />
+              </svg>
+            </div>
+            <span class="title">Resume</span>
+            <span class="date"><small>Fall 2020</small></span>
+            <span></span>
+            <span class="details"> Relevant Work History</span>
+          </a>
+          <!-- end of list item -->
+
+          <!-- start of list item -->
+          <a href="#" onclick="loadTargetProject('Flexre')" class="portfolio-list item">
+            <div class="img">
+              <svg width="100px" height="100px">
+                <rect width="100" height="100" style="fill:rgb(255, 255, 255);" />
+              </svg>
+            </div>
+            <div class="title">The Suites</div>
+            <div class="date"><small>Fall 2018 x Spring 2020</small></div>
+            <div></div>
+            <div class="details">Modular Office Furniture For Growing Business
+              <div class="tagTable">
+                  <span class="tags">Research</span>  <span class="tags">Business Development</span> <span class="tags">Physical & Digital Prototyping</span> <span class="tags">Physical & Digital Design</span>
+              </div>
+            </div>
+          </a>
+          <!-- end of list item -->
+
+          <!-- start of list item -->
+          <a href="#" onclick="loadTargetProject('quickDoc')" class="portfolio-list item">
+            <div class="img">
+              <svg width="100px" height="100px">
+                <rect width="100" height="100" style="fill:rgb(255, 255, 255);" />
+              </svg>
+            </div>
+            <span class="title">QuickDoc</span>
+            <span class="date"><small>Fall 2020</small></span>
+            <span></span>
+            <span class="details">Get Your Medical History Under Control
+              <div class="tagTable">
+                  <span class="tags">Wireframing</span> <span class="tags">Paper-prototyping</span> <span class="tags">Digital-prototyping</span>
+              </div>
+            </span>
+          </a>
+          <!-- end of list item -->
+
+        </div>
+
+
+        <!-- container -->
+        <div class="landing footer">
+          <p>this portfolio will only load if connected to the internet: <span id='connectionStatus'></span></p>
+        </div>
+
+      </div>
+
+      <div class="landing item3"></div>
+
+
+    </div>
+    <!-- end of landingContainer -->
+
+
+
+
+  </main>
+
+
+  <!-- control script -->
+<script>
+      //check internet status and let user know check once then check every 10s for change in state
+      navigator.onLine ? (document.querySelector('#connectionStatus').innerHTML = 'Connected') : (document.querySelector('#connectionStatus').innerHTML = 'Please Connect To the Internet');
+
+      //check status every 10s
+      setTimeout(() => {
+        var spanTarget = document.querySelector('#connectionStatus')
+
+        var connectedHTML = `
+          <span class='landing footer connected'>Connected</span>
+        `
+        var disconnectedHTML = `
+          <span class='landing footer disconnected'>Disconnected</span>
+        `
+        navigator.onLine ? (spanTarget.innerHTML = connectedHTML) : (spanTarget.innerHTML = disconnectedHTML);
+      }, 1000);
+
+
+      //load portfolio on promt
+      loadTargetProject = (target) => {
+        var targetString = `template.portfolioView.${target}`
+        console.log(targetString);
+        var content = document.querySelector(targetString).content;
+        document.querySelector('#mainView').innerHTML = '';
+        document.querySelector('#mainView').appendChild(
+          document.importNode(content, true));
+      }
+
+      //simple back function
+      goBack = () => {
+         window.location.reload(true)
+      }
+
+
+
+      //iframe full screen handlers
+      function fullscreen() {
+        // check if fullscreen mode is available
+        if (document.fullscreenEnabled ||
+          document.webkitFullscreenEnabled ||
+          document.mozFullScreenEnabled ||
+          document.msFullscreenEnabled) {
+
+          // which element will be fullscreen
+          var iframe = document.querySelector('iframe');
+          // Do fullscreen
+          if (iframe.requestFullscreen) {
+            iframe.requestFullscreen();
+          } else if (iframe.webkitRequestFullscreen) {
+            iframe.webkitRequestFullscreen();
+          } else if (iframe.mozRequestFullScreen) {
+            iframe.mozRequestFullScreen();
+          } else if (iframe.msRequestFullscreen) {
+            iframe.msRequestFullscreen();
+          }
+        }
+        else {
+          document.querySelector('.error').innerHTML = 'Your browser is not supported';
+        }
+      }
+
+      function fullscreenChange() {
+        if (document.fullscreenEnabled ||
+             document.webkitIsFullScreen ||
+             document.mozFullScreen ||
+             document.msFullscreenElement) {
+          console.log('enter fullscreen');
+        }
+        else {
+          console.log('exit fullscreen');
+        }
+        // force to reload iframe once to prevent the iframe source didn't care about trying to resize the window
+        // comment this line and you will see
+        var iframe = document.querySelector('iframe');
+        iframe.src = iframe.src;
+      }
+
+
+</script>
+
+  <template class='portfolioView quickDoc'>
+    <div class="projectGrid-container">
+      <div class="project-navbar">
+        <div class="project-navbar-container">
+          <div>
+            <span class="top-subTitle" >Fall 2020</span><br>
+            <span class="bottom-Title">QuickDoc</span> | <span class="bottom-subTitle">Personal Project</span>
+          </div>
+          <div>
+
+
+
+                      <button class="buttonFullScreen">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+                          <g id="Group_2" data-name="Group 2" transform="translate(-924 -207)">
+                            <g id="Icon_ionic-ios-expand" data-name="Icon ionic-ios-expand" transform="translate(930.5 213.628)">
+                              <path id="Path_1" data-name="Path 1" d="M6.753,5.8h3.616a.646.646,0,0,0,.647-.647V5.147a.646.646,0,0,0-.647-.647H5.147a.646.646,0,0,0-.647.647v5.222a.646.646,0,0,0,.647.647h.009a.646.646,0,0,0,.647-.647V6.753l5.45,5.413a.64.64,0,0,0,.456.186.626.626,0,0,0,.456-.191.646.646,0,0,0,0-.912Z" transform="translate(0 0)"/>
+                              <path id="Path_2" data-name="Path 2" d="M26.842,4.5H21.62a.646.646,0,0,0-.647.647v.009a.646.646,0,0,0,.647.647h3.616l-5.413,5.45a.647.647,0,0,0,.912.917l5.45-5.417v3.616a.646.646,0,0,0,.647.647h.009a.646.646,0,0,0,.647-.647V5.147A.646.646,0,0,0,26.842,4.5Z" transform="translate(-5.117)"/>
+                              <path id="Path_3" data-name="Path 3" d="M11.709,19.631a.64.64,0,0,0-.456.186L5.8,25.235V21.619a.646.646,0,0,0-.647-.647H5.147a.646.646,0,0,0-.647.647V26.84a.646.646,0,0,0,.647.647h5.222a.646.646,0,0,0,.647-.647v-.009a.646.646,0,0,0-.647-.647H6.753l5.413-5.45a.647.647,0,0,0-.456-1.1Z" transform="translate(0 -5.116)"/>
+                              <path id="Path_4" data-name="Path 4" d="M26.842,20.974h-.009a.646.646,0,0,0-.647.647v3.616l-5.45-5.413a.64.64,0,0,0-.456-.186.626.626,0,0,0-.456.191.646.646,0,0,0,0,.912l5.413,5.445H21.62a.646.646,0,0,0-.647.647v.009a.646.646,0,0,0,.647.647h5.222a.646.646,0,0,0,.647-.647V21.621A.646.646,0,0,0,26.842,20.974Z" transform="translate(-5.117 -5.118)"/>
+                            </g>
+                          </g>
+                        </svg>
+
+
+                      </button>
+
+                      <button type="button" name="button" class="buttonBackHome" onclick="goBack()">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+                          <g id="Group_1" data-name="Group 1" transform="translate(-972 -207)">
+                            <path id="Icon_ionic-ios-return-right" data-name="Icon ionic-ios-return-right" d="M23.057,16.3l-2.93-2.92a.684.684,0,0,0-.487-.2.672.672,0,0,0-.487.2.688.688,0,0,0,0,.973l0,0,2.02,1.971H8.334a2.467,2.467,0,0,1-2.458-2.458v-2.36a.688.688,0,1,0-1.376,0v2.36A3.843,3.843,0,0,0,8.334,17.71H21.2l-1.952,1.976a.684.684,0,0,0-.2.487.672.672,0,0,0,.2.487l0,0a.711.711,0,0,0,.482.192.656.656,0,0,0,.487-.2l2.831-2.822a1.086,1.086,0,0,0,.32-.772A1.028,1.028,0,0,0,23.057,16.3Z" transform="translate(978.5 211.488)"/>
+                          </g>
+                        </svg>
+
+                      </button>
+
+
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class="project-view-container">
+
+        <div id="iframe_container">
+        <iframe src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FzkdNJiv4MvDjsxAWpXj5gN%2Fquickdoc%3Fnode-id%3D1%253A2%26viewport%3D1162%252C525%252C0.2109978348016739%26scaling%3Dmin-zoom%26hide-ui=1" allowfullscreen></iframe>
+        </div>
+
+
+    </div>
+
+
+      <script type="text/javascript">
+        //listeners have to be declared on templete load
+
+        var button = document.querySelector('.buttonFullScreen');
+        button.addEventListener('click', fullscreen);
+        // when you are in fullscreen, ESC and F11 may not be trigger by keydown listener.
+        // so don't use it to detect exit fullscreen
+        document.addEventListener('keydown', function (e) {
+          console.log('key press' + e.keyCode);
+        });
+        // detect enter or exit fullscreen mode
+        document.addEventListener('webkitfullscreenchange', fullscreenChange);
+        document.addEventListener('mozfullscreenchange', fullscreenChange);
+        document.addEventListener('fullscreenchange', fullscreenChange);
+        document.addEventListener('MSFullscreenChange', fullscreenChange);
+
+
+        //update iframe size
+          var iframe = document.querySelector('iframe');
+          var iframe_container = document.querySelector('.iframe_container');
+          var w = window.innerWidth*.65;
+          var h = w*.6625;
+          iframe.setAttribute('width', w);
+          iframe.setAttribute('height', h);
+
+
+
+      </script>
+    </div>
+
+  </template>
+
+  <template class='portfolioView Flexre'>
+
+    <div class="projectGrid-container">
+      <div class="project-navbar">
+        <div class="project-navbar-container">
+          <div>
+            <span class="top-subTitle" >Fall 2018 - Spring 2020</span><br>
+            <span class="bottom-Title">The Suites</span> | <span class="bottom-subTitle">Flexre Technologies</span>
+          </div>
+          <div>
+
+
+
+                      <button class="buttonFullScreen">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+                          <g id="Group_2" data-name="Group 2" transform="translate(-924 -207)">
+                            <g id="Icon_ionic-ios-expand" data-name="Icon ionic-ios-expand" transform="translate(930.5 213.628)">
+                              <path id="Path_1" data-name="Path 1" d="M6.753,5.8h3.616a.646.646,0,0,0,.647-.647V5.147a.646.646,0,0,0-.647-.647H5.147a.646.646,0,0,0-.647.647v5.222a.646.646,0,0,0,.647.647h.009a.646.646,0,0,0,.647-.647V6.753l5.45,5.413a.64.64,0,0,0,.456.186.626.626,0,0,0,.456-.191.646.646,0,0,0,0-.912Z" transform="translate(0 0)"/>
+                              <path id="Path_2" data-name="Path 2" d="M26.842,4.5H21.62a.646.646,0,0,0-.647.647v.009a.646.646,0,0,0,.647.647h3.616l-5.413,5.45a.647.647,0,0,0,.912.917l5.45-5.417v3.616a.646.646,0,0,0,.647.647h.009a.646.646,0,0,0,.647-.647V5.147A.646.646,0,0,0,26.842,4.5Z" transform="translate(-5.117)"/>
+                              <path id="Path_3" data-name="Path 3" d="M11.709,19.631a.64.64,0,0,0-.456.186L5.8,25.235V21.619a.646.646,0,0,0-.647-.647H5.147a.646.646,0,0,0-.647.647V26.84a.646.646,0,0,0,.647.647h5.222a.646.646,0,0,0,.647-.647v-.009a.646.646,0,0,0-.647-.647H6.753l5.413-5.45a.647.647,0,0,0-.456-1.1Z" transform="translate(0 -5.116)"/>
+                              <path id="Path_4" data-name="Path 4" d="M26.842,20.974h-.009a.646.646,0,0,0-.647.647v3.616l-5.45-5.413a.64.64,0,0,0-.456-.186.626.626,0,0,0-.456.191.646.646,0,0,0,0,.912l5.413,5.445H21.62a.646.646,0,0,0-.647.647v.009a.646.646,0,0,0,.647.647h5.222a.646.646,0,0,0,.647-.647V21.621A.646.646,0,0,0,26.842,20.974Z" transform="translate(-5.117 -5.118)"/>
+                            </g>
+                          </g>
+                        </svg>
+
+
+                      </button>
+
+                      <button type="button" name="button" class="buttonBackHome" onclick="goBack()">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+                          <g id="Group_1" data-name="Group 1" transform="translate(-972 -207)">
+                            <path id="Icon_ionic-ios-return-right" data-name="Icon ionic-ios-return-right" d="M23.057,16.3l-2.93-2.92a.684.684,0,0,0-.487-.2.672.672,0,0,0-.487.2.688.688,0,0,0,0,.973l0,0,2.02,1.971H8.334a2.467,2.467,0,0,1-2.458-2.458v-2.36a.688.688,0,1,0-1.376,0v2.36A3.843,3.843,0,0,0,8.334,17.71H21.2l-1.952,1.976a.684.684,0,0,0-.2.487.672.672,0,0,0,.2.487l0,0a.711.711,0,0,0,.482.192.656.656,0,0,0,.487-.2l2.831-2.822a1.086,1.086,0,0,0,.32-.772A1.028,1.028,0,0,0,23.057,16.3Z" transform="translate(978.5 211.488)"/>
+                          </g>
+                        </svg>
+
+                      </button>
+
+
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class="project-view-container">
+
+        <div id="iframe_container">
+        <iframe src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F7aTXgt5wc9pTmazdKlZAX1%2FFlexre%3Fnode-id%3D34%253A2%26viewport%3D689%252C105%252C0.12460010498762131%26scaling%3Dmin-zoom%26hide-ui=1" allowfullscreen></iframe>
+        </div>
+
+
+    </div>
+
+
+      <script type="text/javascript">
+        //listeners have to be declared on templete load
+
+        var button = document.querySelector('.buttonFullScreen');
+        button.addEventListener('click', fullscreen);
+        // when you are in fullscreen, ESC and F11 may not be trigger by keydown listener.
+        // so don't use it to detect exit fullscreen
+        document.addEventListener('keydown', function (e) {
+          console.log('key press' + e.keyCode);
+        });
+        // detect enter or exit fullscreen mode
+        document.addEventListener('webkitfullscreenchange', fullscreenChange);
+        document.addEventListener('mozfullscreenchange', fullscreenChange);
+        document.addEventListener('fullscreenchange', fullscreenChange);
+        document.addEventListener('MSFullscreenChange', fullscreenChange);
+
+
+
+        var iframe = document.querySelector('iframe');
+        var w = window.innerWidth*.65;
+        var h = w*.6625;
+        iframe.setAttribute('width', w);
+        iframe.setAttribute('height', h);
+
+
+
+
+      </script>
+    </div>
+
+  </template>
+
+  <template class='portfolioView Resume'>
+    <div class="projectGrid-container">
+      <div class="project-navbar">
+        <div class="project-navbar-container">
+          <div>
+            <span class="top-subTitle" >Fall 2020</span><br>
+            <span class="bottom-Title">Resume</span> | <span class="bottom-subTitle">Ethan Drory</span>
+          </div>
+          <div>
+
+
+
+                      <button class="buttonFullScreen">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+                          <g id="Group_2" data-name="Group 2" transform="translate(-924 -207)">
+                            <g id="Icon_ionic-ios-expand" data-name="Icon ionic-ios-expand" transform="translate(930.5 213.628)">
+                              <path id="Path_1" data-name="Path 1" d="M6.753,5.8h3.616a.646.646,0,0,0,.647-.647V5.147a.646.646,0,0,0-.647-.647H5.147a.646.646,0,0,0-.647.647v5.222a.646.646,0,0,0,.647.647h.009a.646.646,0,0,0,.647-.647V6.753l5.45,5.413a.64.64,0,0,0,.456.186.626.626,0,0,0,.456-.191.646.646,0,0,0,0-.912Z" transform="translate(0 0)"/>
+                              <path id="Path_2" data-name="Path 2" d="M26.842,4.5H21.62a.646.646,0,0,0-.647.647v.009a.646.646,0,0,0,.647.647h3.616l-5.413,5.45a.647.647,0,0,0,.912.917l5.45-5.417v3.616a.646.646,0,0,0,.647.647h.009a.646.646,0,0,0,.647-.647V5.147A.646.646,0,0,0,26.842,4.5Z" transform="translate(-5.117)"/>
+                              <path id="Path_3" data-name="Path 3" d="M11.709,19.631a.64.64,0,0,0-.456.186L5.8,25.235V21.619a.646.646,0,0,0-.647-.647H5.147a.646.646,0,0,0-.647.647V26.84a.646.646,0,0,0,.647.647h5.222a.646.646,0,0,0,.647-.647v-.009a.646.646,0,0,0-.647-.647H6.753l5.413-5.45a.647.647,0,0,0-.456-1.1Z" transform="translate(0 -5.116)"/>
+                              <path id="Path_4" data-name="Path 4" d="M26.842,20.974h-.009a.646.646,0,0,0-.647.647v3.616l-5.45-5.413a.64.64,0,0,0-.456-.186.626.626,0,0,0-.456.191.646.646,0,0,0,0,.912l5.413,5.445H21.62a.646.646,0,0,0-.647.647v.009a.646.646,0,0,0,.647.647h5.222a.646.646,0,0,0,.647-.647V21.621A.646.646,0,0,0,26.842,20.974Z" transform="translate(-5.117 -5.118)"/>
+                            </g>
+                          </g>
+                        </svg>
+
+
+                      </button>
+
+                      <button type="button" name="button" class="buttonBackHome" onclick="goBack()">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+                          <g id="Group_1" data-name="Group 1" transform="translate(-972 -207)">
+                            <path id="Icon_ionic-ios-return-right" data-name="Icon ionic-ios-return-right" d="M23.057,16.3l-2.93-2.92a.684.684,0,0,0-.487-.2.672.672,0,0,0-.487.2.688.688,0,0,0,0,.973l0,0,2.02,1.971H8.334a2.467,2.467,0,0,1-2.458-2.458v-2.36a.688.688,0,1,0-1.376,0v2.36A3.843,3.843,0,0,0,8.334,17.71H21.2l-1.952,1.976a.684.684,0,0,0-.2.487.672.672,0,0,0,.2.487l0,0a.711.711,0,0,0,.482.192.656.656,0,0,0,.487-.2l2.831-2.822a1.086,1.086,0,0,0,.32-.772A1.028,1.028,0,0,0,23.057,16.3Z" transform="translate(978.5 211.488)"/>
+                          </g>
+                        </svg>
+
+                      </button>
+
+
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class="project-view-container">
+
+        <svg id="Group_9" data-name="Group 9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="720" height="836" viewBox="0 0 720 836">
+          <defs>
+            <clipPath id="clip-path">
+              <path id="Path_9" data-name="Path 9" d="M0,0H619.63V-741.11H0Z" fill="none"/>
+            </clipPath>
+          </defs>
+          <rect id="Rectangle_14" data-name="Rectangle 14" width="720" height="836" fill="#fff"/>
+          <g id="Group_8" data-name="Group 8" transform="translate(50 772.22)">
+            <g id="Group">
+              <text id="E" transform="translate(9 -695.588)" fill="#2b2e34" font-size="34" font-family="TitilliumWeb-Bold, Titillium Web" font-weight="700" letter-spacing="0.1em"><tspan x="0" y="0">E</tspan></text>
+              <text id="than" transform="translate(30.454 -695.588)" fill="#2b2e34" font-size="34" font-family="TitilliumWeb-Bold, Titillium Web" font-weight="700" letter-spacing="0.1em"><tspan x="0" y="0">than</tspan></text>
+              <text id="_D" data-name=" D" transform="translate(112.088 -695.588)" fill="#2b2e34" font-size="34" font-family="TitilliumWeb-Bold, Titillium Web" font-weight="700" letter-spacing="0.1em"><tspan x="0" y="0" xml:space="preserve"> D</tspan></text>
+              <text id="r" transform="translate(147.38 -695.588)" fill="#2b2e34" font-size="34" font-family="TitilliumWeb-Bold, Titillium Web" font-weight="700" letter-spacing="0.1em"><tspan x="0" y="0">r</tspan></text>
+              <text id="o" transform="translate(162.612 -695.588)" fill="#2b2e34" font-size="34" font-family="TitilliumWeb-Bold, Titillium Web" font-weight="700" letter-spacing="0.1em"><tspan x="0" y="0">o</tspan></text>
+              <text id="r-2" data-name="r" transform="translate(183.42 -695.588)" fill="#2b2e34" font-size="34" font-family="TitilliumWeb-Bold, Titillium Web" font-weight="700" letter-spacing="0.1em"><tspan x="0" y="0">r</tspan></text>
+              <text id="y" transform="translate(200.148 -695.588)" fill="#2b2e34" font-size="34" font-family="TitilliumWeb-Bold, Titillium Web" font-weight="700" letter-spacing="0.1em"><tspan x="0" y="0">y</tspan></text>
+            </g>
+            <g id="Group-2" data-name="Group">
+              <text id="Experience" transform="translate(10 -656.125)" fill="#2b2e34" font-size="12" font-family="TitilliumWeb-SemiBold, Titillium Web" font-weight="600" letter-spacing="0.08em"><tspan x="0" y="0">Experience</tspan></text>
+              <text id="Education" transform="translate(10.996 -204.325)" fill="#2b2e34" font-size="12" font-family="TitilliumWeb-SemiBold, Titillium Web" font-weight="600" letter-spacing="0.08em"><tspan x="0" y="0">Education</tspan></text>
+              <text id="Skills" transform="translate(10.996 -87.241)" fill="#2b2e34" font-size="12" font-family="TitilliumWeb-SemiBold, Titillium Web" font-weight="600" letter-spacing="0.08em"><tspan x="0" y="0">Skills</tspan></text>
+            </g>
+            <g id="Group-3" data-name="Group">
+              <text id="An_US_-_Canadian_industrial_designer_based_in_Boston_MA." data-name="An US - Canadian industrial designer based in Boston, MA." transform="translate(34.976 -676.662)" fill="#2b2e34" font-size="10" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">An US - Canadian industrial designer based in Boston, MA.</tspan></text>
+              <text id="_" data-name=" " transform="translate(323.146 -676.662)" fill="#2b2e34" font-size="10" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0"> </tspan></text>
+            </g>
+            <g id="Group-4" data-name="Group">
+              <text id="Flexre_T" data-name="Flexre T" transform="translate(23 -634.05)" fill="#2b2e34" font-size="12" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">Flexre T</tspan></text>
+              <text id="echnologies_LLC_Boston_MA_2018-2020" data-name="echnologies, LLC; Boston, MA; 2018-2020" transform="translate(69.152 -634.05)" fill="#2b2e34" font-size="12" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">echnologies, LLC; Boston, MA; 2018-2020</tspan></text>
+              <text id="Calyx_Containers_LLC_Boston_MA_2018" data-name="Calyx Containers, LLC; Boston, MA; 2018" transform="translate(23 -505.422)" fill="#2b2e34" font-size="12" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">Calyx Containers, LLC; Boston, MA; 2018</tspan></text>
+            </g>
+            <g id="Group-5" data-name="Group">
+              <text id="Contract_Design_Lead" data-name="Contract Design Lead" transform="translate(34.87 -617.425)" fill="#2b2e34" font-size="9" font-family="TitilliumWeb-SemiBold, Titillium Web" font-weight="600" letter-spacing="0.08em"><tspan x="0" y="0">Contract Design Lead</tspan></text>
+              <text id="Contract_Industrial_Designer" data-name="Contract Industrial Designer" transform="translate(34.87 -491.803)" fill="#2b2e34" font-size="9" font-family="TitilliumWeb-SemiBold, Titillium Web" font-weight="600" letter-spacing="0.08em"><tspan x="0" y="0">Contract Industrial Designer</tspan></text>
+              <text id="CEO_Owner" data-name="CEO / Owner" transform="translate(34.87 -402.244)" fill="#2b2e34" font-size="9" font-family="TitilliumWeb-SemiBold, Titillium Web" font-weight="600" letter-spacing="0.08em"><tspan x="0" y="0">CEO / Owner</tspan></text>
+              <text id="Industrial_Design_Intern" data-name="Industrial Design Intern" transform="translate(34.87 -272.905)" fill="#2b2e34" font-size="9" font-family="TitilliumWeb-SemiBold, Titillium Web" font-weight="600" letter-spacing="0.08em"><tspan x="0" y="0">Industrial Design Intern</tspan></text>
+            </g>
+            <g id="Group-6" data-name="Group">
+              <text id="BF" transform="translate(22.898 -180.609)" fill="#2b2e34" font-size="12" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">BF</tspan></text>
+              <text id="A_Industrial_Design" data-name="A Industrial Design" transform="translate(38.114 -180.609)" fill="#2b2e34" font-size="12" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">A Industrial Design</tspan></text>
+              <text id="Softskills" transform="translate(22.898 -62.493)" fill="#2b2e34" font-size="12" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">Softskills</tspan></text>
+              <text id="Software" transform="translate(272.642 -62.493)" fill="#2b2e34" font-size="12" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">Software</tspan></text>
+              <text id="Micro_MBA" data-name="Micro MBA" transform="translate(22.898 -130.221)" fill="#2b2e34" font-size="12" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">Micro MBA</tspan></text>
+            </g>
+            <g id="Group-7" data-name="Group">
+              <text id="Massachusetts_College_of_Art_and_Design_Boston_MA_2014_-_2018" data-name="Massachusetts College of Art and Design; Boston, MA; 2014 - 2018" transform="translate(34.976 -165.59)" fill="#2b2e34" font-size="9" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">Massachusetts College of Art and Design; Boston, MA; 2014 - 2018</tspan></text>
+              <text id="Massachusetts_College_of_Art_and_Design_Boston_MA_2016" data-name="Massachusetts College of Art and Design; Boston, MA; 2016" transform="translate(34.976 -117.098)" fill="#2b2e34" font-size="9" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">Massachusetts College of Art and Design; Boston, MA; 2016</tspan></text>
+            </g>
+            <g id="Group-8" data-name="Group">
+              <text id="Odax_Systems_LLC_Boston_MA_2015-Present" data-name="Odax Systems, LLC; Boston, MA; 2015-Present" transform="translate(23 -417.258)" fill="#2b2e34" font-size="12" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">Odax Systems, LLC; Boston, MA; 2015-Present</tspan></text>
+              <text id="Aerhyve_Aerial_T" data-name="Aerhyve Aerial T" transform="translate(23 -286.914)" fill="#2b2e34" font-size="12" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">Aerhyve Aerial T</tspan></text>
+              <text id="echnologies_W" data-name="echnologies; W" transform="translate(118.748 -286.914)" fill="#2b2e34" font-size="12" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">echnologies; W</tspan></text>
+              <text id="olfville_NS_Canada_2015" data-name="olfville, NS, Canada; 2015" transform="translate(208.256 -286.914)" fill="#2b2e34" font-size="12" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">olfville, NS, Canada; 2015</tspan></text>
+            </g>
+            <g id="Group-9" data-name="Group">
+              <text id="_-_Responsible_for_product_design_and_design_of_presentation_materials_for_investors_and_potential_customers" data-name="- Responsible for product design and design of presentation materials for investors and  potential customers" transform="translate(46.976 -601.534)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0" xml:space="preserve">- Responsible for product design and design of presentation materials for investors and  potential customers</tspan></text>
+              <text id="_-_Worked_with_international_partners_to_build_prototypes_and_bring_a_new_product_line_modular_furniture_systems_to_market" data-name="- Worked with international partners to build prototypes and bring a new product line (modular furniture systems) to market" transform="translate(46.976 -587.534)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Worked with international partners to build prototypes and bring a new product line (modular furniture systems) to market</tspan></text>
+              <text id="_-_Led_research_initiatives_to_develop_a_new_business_direction_and_to_justify_it_company_investors" data-name="- Led research initiatives to develop a new business direction and to justify it company investors" transform="translate(46.976 -573.534)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Led research initiatives to develop a new business direction and to justify it company investors</tspan></text>
+              <text id="_-_Participated_on_a_regular_basis_in_company_strategy_sessions_including_the_design_and_analysis_of_the_businesses_model" data-name="- Participated on a regular basis in company strategy sessions including the design and analysis of the businesses model" transform="translate(46.976 -559.534)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Participated on a regular basis in company strategy sessions including the design and analysis of the businesses model</tspan></text>
+              <text id="_-_Managed_the_company_s_intern_program_including_hiring_and_integration" data-name="- Managed the company’s intern program including hiring and integration" transform="translate(46.976 -545.534)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Managed the company’s intern program including hiring and integration</tspan></text>
+              <text id="_-_Designed_prototyped_and_built_company_website" data-name="- Designed, prototyped, and built company website" transform="translate(46.976 -531.534)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Designed, prototyped, and built company website</tspan></text>
+              <text id="_-_Responsible_for_producing_SOP_s_for_in-house_3D_printing_prototyping_practices" data-name="- Responsible for producing SOP’s for in-house 3D printing / prototyping practices" transform="translate(46.976 -474.91)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Responsible for producing SOP’s for in-house 3D printing / prototyping practices</tspan></text>
+              <text id="_-_Created_product_and_service_concepts_for_new_product_offerings" data-name="- Created product and service concepts for new product offerings" transform="translate(46.976 -460.91)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Created product and service concepts for new product offerings</tspan></text>
+              <text id="_-_Aided_in_the_glass_and_ceramics_product_prototyping_for_the_company_s_product_line" data-name="- Aided in the glass and ceramics product prototyping for the company’s product line" transform="translate(46.976 -446.91)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Aided in the glass and ceramics product prototyping for the company’s product line</tspan></text>
+            </g>
+            <g id="Group_3" data-name="Group 3" transform="translate(244.725 -316.196)">
+              <path id="Path_5" data-name="Path 5" d="M0,0H40.976" fill="none" stroke="#1b5ea2" stroke-width="0.24"/>
+            </g>
+            <g id="Group-10" data-name="Group">
+              <text id="_-_Awarded_mini_grant_for_aquaponics_R_D_from_the_Colleges_of_the_Fenway_for_Sustainability_and_the_Environment" data-name="- Awarded mini grant for aquaponics R&amp;D from the Colleges of the Fenway for Sustainability and the Environment" transform="translate(46.976 -386.956)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Awarded mini grant for aquaponics R&amp;D from the Colleges of the Fenway for Sustainability and the Environment</tspan></text>
+              <text id="_-_Design_and_build_prototypes_for_long_term_product_viability_studies" data-name="- Design and build prototypes for long term product viability studies" transform="translate(46.976 -372.956)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Design and build prototypes for long term product viability studies</tspan></text>
+              <text id="_-_Manage_business_operations_and_accounting" data-name="- Manage business operations and accounting" transform="translate(46.976 -358.956)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Manage business operations and accounting</tspan></text>
+              <text id="_-_Designed_and_built_digital_hardware_prototypes" data-name="- Designed and built digital hardware prototypes" transform="translate(46.976 -344.956)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Designed and built digital hardware prototypes</tspan></text>
+              <text id="_-_With_teams_ran_ethnographic_studies_of_potential_customers" data-name="- With teams, ran ethnographic studies of potential customers" transform="translate(46.976 -330.956)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- With teams, ran ethnographic studies of potential customers</tspan></text>
+              <text id="_-_developed_an_open_source_software_application:_" data-name="- developed an open source software application: " transform="translate(46.976 -316.956)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- developed an open source software application: </tspan></text>
+              <text id="Cortex.iot" transform="translate(244.727 -316.956)" fill="#1b5ea2" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">Cortex.iot</tspan></text>
+              <text id="_2" data-name=" " transform="translate(282.663 -316.956)" fill="#1b5ea2" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0"> </tspan></text>
+              <text id="_-_Responsible_for_designing_and_building_CAD_files_for_custom_mounting_hardware_for_imaging_hardware_for_UA" data-name="- Responsible for designing and building CAD files for custom mounting hardware for imaging hardware for UA" transform="translate(46.976 -258.18)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Responsible for designing and building CAD files for custom mounting hardware for imaging hardware for UA</tspan></text>
+              <text id="Vs." transform="translate(483.816 -258.18)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">Vs.</tspan></text>
+              <text id="_-_Member_of_a_4-person_design_team_which_won_the_Annapolis_V" data-name="- Member of a 4-person design team which won the Annapolis V" transform="translate(46.976 -244.18)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Member of a 4-person design team which won the Annapolis V</tspan></text>
+              <text id="alley_Chamber_of_Commerce:" data-name="alley Chamber of Commerce:" transform="translate(301.704 -244.18)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">alley Chamber of Commerce:</tspan></text>
+              <text id="_The_Agriculture_Innovation_Accelerator_Award_" data-name="   ‘The Agriculture Innovation Accelerator Award’" transform="translate(46.976 -230.18)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0" xml:space="preserve">   ‘The Agriculture Innovation Accelerator Award’</tspan></text>
+              <text id="_-_Attended_on_academic_merit_scholarship" data-name="- Attended on academic merit scholarship" transform="translate(46.976 -150.204)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Attended on academic merit scholarship</tspan></text>
+              <text id="_-_Business_fundamentals_Accounting_T" data-name="- Business fundamentals (Accounting/T" transform="translate(46.976 -47.572)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Business fundamentals (Accounting/T</tspan></text>
+              <text id="ax_Management_" data-name="ax/Management)" transform="translate(202.895 -47.572)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">ax/Management)</tspan></text>
+              <text id="_-_Bilingual_English_French_" data-name="- Bilingual (English/French)" transform="translate(46.976 -34.236)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Bilingual (English/French)</tspan></text>
+              <text id="_-_CAD_Fusion_360_Solidworks_" data-name="- CAD (Fusion 360/Solidworks)" transform="translate(296.72 -47.572)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- CAD (Fusion 360/Solidworks)</tspan></text>
+              <text id="_-_Software_Rendering_Keyshot_" data-name="- Software Rendering (Keyshot)" transform="translate(296.72 -34.236)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Software Rendering (Keyshot)</tspan></text>
+              <text id="_-_Programming_JS_HTLM_CSS_" data-name="- Programming (JS/HTLM/CSS)" transform="translate(296.72 -21.86)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Programming (JS/HTLM/CSS)</tspan></text>
+              <text id="_-_Design_Applications_Illustrator" data-name="- Design Applications (Illustrator" transform="translate(296.72 -8.524)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">- Design Applications (Illustrator</tspan></text>
+              <text id="_Photoshop_Indesign_Xd_Figma_" data-name="/Photoshop/Indesign/Xd/Figma)" transform="translate(426.296 -8.524)" fill="#2b2e34" font-size="8" font-family="TitilliumWeb-Regular, Titillium Web" letter-spacing="0.08em"><tspan x="0" y="0">/Photoshop/Indesign/Xd/Figma)</tspan></text>
+            </g>
+            <g id="Group_7" data-name="Group 7" clip-path="url(#clip-path)">
+              <g id="Group_4" data-name="Group 4" transform="translate(91.87 -660.461)">
+                <path id="Path_6" data-name="Path 6" d="M0,0H527.76" fill="none" stroke="#2b2e34" stroke-width="1"/>
+              </g>
+              <g id="Group_5" data-name="Group 5" transform="translate(91.87 -208.012)">
+                <path id="Path_7" data-name="Path 7" d="M0,0H527.76" fill="none" stroke="#2b2e34" stroke-width="1"/>
+              </g>
+              <g id="Group_6" data-name="Group 6" transform="translate(91.87 -90.933)">
+                <path id="Path_8" data-name="Path 8" d="M0,0H527.76" fill="none" stroke="#2b2e34" stroke-width="1"/>
+              </g>
+            </g>
+          </g>
+        </svg>
+
+    </div>
+
+
+      <script type="text/javascript">
+        //listeners have to be declared on templete load
+
+        var button = document.querySelector('.buttonFullScreen');
+        button.addEventListener('click', fullscreen);
+        // when you are in fullscreen, ESC and F11 may not be trigger by keydown listener.
+        // so don't use it to detect exit fullscreen
+        document.addEventListener('keydown', function (e) {
+          console.log('key press' + e.keyCode);
+        });
+        // detect enter or exit fullscreen mode
+        document.addEventListener('webkitfullscreenchange', fullscreenChange);
+        document.addEventListener('mozfullscreenchange', fullscreenChange);
+        document.addEventListener('fullscreenchange', fullscreenChange);
+        document.addEventListener('MSFullscreenChange', fullscreenChange);
+
+
+
+
+
+      </script>
+    </div>
+
+  </template>
+
+
+
+
+</body>
+
+</html>
