@@ -24,6 +24,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📕</text></svg>">
+
+  <!-- simple pop up library -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 </head>
 <style media="screen">
   /* import google font style and weights */
@@ -89,16 +93,17 @@
   }
 
 
+/* swall style changes */
 
+.swal2-popup{
+  border-radius: 0;
+}
+
+{
+
+}
 
 /* end of master styling */
-
-
-  /* main view  */
-  main.mainView {}
-
-  /* Landing grid conatiner master styling */
-  .landing {}
 
   /* landing grid containers */
   .landing.item1 {
@@ -118,7 +123,7 @@
   /*loading grid & more for landingContainer */
   #landingContainer {
     display: grid;
-    grid-template-columns: minmax(1px, 3fr) auto minmax(1px, 3fr);
+    grid-template-columns: minmax(1px, 2fr) auto minmax(1px, 2fr);
     grid-template-areas:
       'landingSideWall1 landingCenter landingSideWall3';
   }
@@ -248,17 +253,19 @@
       border: none;
     }
 
-    .buttonFullScreen, .buttonBackHome {
+    .buttonFullScreen, .buttonBackHome, .swal2-styled.swal2-confirm {
       border: none;
+      border-radius:0;
       text-transform: uppercase;
       text-decoration: none;
+      color: black;
       background: #ffffff;
       border-color: #ffffff !important;
       display: inline-block;
       transition: all 0.4s ease 0s;
    }
 
-   .buttonFullScreen:hover, .buttonBackHome:hover {
+   .buttonFullScreen:hover, .buttonBackHome:hover, .swal2-styled.swal2-confirm:hover {
      color: #ffffff !important;
      background: #f6b93b;
      border-color: #f6b93b !important;
@@ -298,11 +305,7 @@
           </div>
           <div>
             <small>
-              The current version of this portfolio is hosted
-              <a href="https://portfolio-9f815.firebaseapp.com/" target="_blank">here</a>
-            </small>
-            <small>
-              and a downloadable version
+              A downloadable version of this portfolio can be found here
               <a href="https://github.com/odax-ethan/Drory-Portfolio" target="_blank">here.</a>
             </small>
           </div>
@@ -379,12 +382,12 @@
         <div class="portfolio-list container">
 
           <!-- portfolio list Item -->
-          <a href="#" onclick="loadTargetProject('Resume')" class="grid-container">
+          <!-- <a href="#" onclick="loadTargetProject('Resume')" class="grid-container">
             <div class="block" style="background-color: #85F19E;"></div>
             <div class="title">Resume</div>
             <div class="date"><small>Fall 2020</small></div>
             <div class="detail">Relevant Work History</div>
-          </a>
+          </a> -->
 
           <!-- portfolio list Item -->
           <a href="#" onclick="loadTargetProject('Flexre')" class="grid-container">
@@ -429,29 +432,10 @@
             </div>
           </a>
 
-
-
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-        <!-- <div class="grid-container">
-          <div class="block"></div>
-          <div class="title">Title</div>
-          <div class="date">Date</div>
-          <div class="detail">Details</div>
-        </div> -->
-
         <!-- container -->
+        <!-- comment out when hosting -->
         <div class="landing footer">
           <p>This portfolio will only load if connected to the internet: <span id='connectionStatus'></span></p>
         </div>
@@ -460,12 +444,8 @@
 
       <div class="landing item3"></div>
 
-
     </div>
     <!-- end of landingContainer -->
-
-
-
 
   </main>
 
@@ -488,7 +468,6 @@
         navigator.onLine ? (spanTarget.innerHTML = connectedHTML) : (spanTarget.innerHTML = disconnectedHTML);
       }, 1000);
 
-
       //load portfolio on promt
       loadTargetProject = (target) => {
         var targetString = `template.portfolioView.${target}`
@@ -503,8 +482,6 @@
       goBack = () => {
          window.location.reload(true)
       }
-
-
 
       //iframe full screen handlers
       function fullscreen() {
@@ -548,6 +525,33 @@
         iframe.src = iframe.src;
       }
 
+      function buildIframe(figmaSRC) {
+          if (document.getElementById('iframe_container')) {
+            // do stuff
+            var iframe_container = document.querySelector('#iframe_container');
+            var w = window.innerWidth*.65;
+            var h = w*.6625;
+
+            if(window.innerWidth > 720){
+              console.log('good conditions');
+            } else {
+
+              Swal.fire(
+                'Please Full Screen',
+                'Your current screen makes for a less than optimal viewing conditions, full screen for best viewing experience',
+                'warning'
+              )
+
+              // alert('Your current screen makes for a less than optimal viewing conditions, full screen for best viewing experience');
+            }
+
+            return iframe_container.innerHTML = `<iframe width =${w} height =${h} src=${figmaSRC} allowfullscreen></iframe>`
+
+
+          } else {
+            setTimeout(myFunc, 15);
+          }
+        }
 
 </script>
 
@@ -600,7 +604,6 @@
     <div class="project-view-container">
 
       <div id="iframe_container">
-      <iframe src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FKVrVj7YKQmUyHqF83H6BrD%2FPolivoice%3Fnode-id%3D2%253A2%26viewport%3D718%252C481%252C1%26scaling%3Dcontain%26hide-ui=1" allowfullscreen></iframe>
       </div>
 
 
@@ -625,14 +628,7 @@
 
 
     //update iframe size
-      var iframe = document.querySelector('iframe');
-      var iframe_container = document.querySelector('.iframe_container');
-      var w = window.innerWidth*.65;
-      var h = w*.6625;
-      iframe.setAttribute('width', w);
-      iframe.setAttribute('height', h);
-
-
+      buildIframe('https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FKVrVj7YKQmUyHqF83H6BrD%2FPolivoice%3Fnode-id%3D2%253A2%26viewport%3D718%252C481%252C1%26scaling%3Dcontain%26hide-ui=1')
 
     </script>
   </div>
@@ -687,7 +683,6 @@
       <div class="project-view-container">
 
         <div id="iframe_container">
-        <iframe src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FzkdNJiv4MvDjsxAWpXj5gN%2Fquickdoc%3Fnode-id%3D1%253A2%26viewport%3D1162%252C525%252C0.2109978348016739%26scaling%3Dmin-zoom%26hide-ui=1" allowfullscreen></iframe>
         </div>
 
 
@@ -712,12 +707,8 @@
 
 
         //update iframe size
-          var iframe = document.querySelector('iframe');
-          var iframe_container = document.querySelector('.iframe_container');
-          var w = window.innerWidth*.65;
-          var h = w*.6625;
-          iframe.setAttribute('width', w);
-          iframe.setAttribute('height', h);
+        buildIframe('https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FzkdNJiv4MvDjsxAWpXj5gN%2Fquickdoc%3Fnode-id%3D1%253A2%26viewport%3D1162%252C525%252C0.2109978348016739%26scaling%3Dcontain%26hide-ui=1')
+
 
 
 
@@ -737,23 +728,23 @@
           </div>
           <div>
 
+              <button class="buttonFullScreen">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+                  <g id="Group_2" data-name="Group 2" transform="translate(-924 -207)">
+                    <g id="Icon_ionic-ios-expand" data-name="Icon ionic-ios-expand" transform="translate(930.5 213.628)">
+                      <path id="Path_1" data-name="Path 1" d="M6.753,5.8h3.616a.646.646,0,0,0,.647-.647V5.147a.646.646,0,0,0-.647-.647H5.147a.646.646,0,0,0-.647.647v5.222a.646.646,0,0,0,.647.647h.009a.646.646,0,0,0,.647-.647V6.753l5.45,5.413a.64.64,0,0,0,.456.186.626.626,0,0,0,.456-.191.646.646,0,0,0,0-.912Z" transform="translate(0 0)"/>
+                      <path id="Path_2" data-name="Path 2" d="M26.842,4.5H21.62a.646.646,0,0,0-.647.647v.009a.646.646,0,0,0,.647.647h3.616l-5.413,5.45a.647.647,0,0,0,.912.917l5.45-5.417v3.616a.646.646,0,0,0,.647.647h.009a.646.646,0,0,0,.647-.647V5.147A.646.646,0,0,0,26.842,4.5Z" transform="translate(-5.117)"/>
+                      <path id="Path_3" data-name="Path 3" d="M11.709,19.631a.64.64,0,0,0-.456.186L5.8,25.235V21.619a.646.646,0,0,0-.647-.647H5.147a.646.646,0,0,0-.647.647V26.84a.646.646,0,0,0,.647.647h5.222a.646.646,0,0,0,.647-.647v-.009a.646.646,0,0,0-.647-.647H6.753l5.413-5.45a.647.647,0,0,0-.456-1.1Z" transform="translate(0 -5.116)"/>
+                      <path id="Path_4" data-name="Path 4" d="M26.842,20.974h-.009a.646.646,0,0,0-.647.647v3.616l-5.45-5.413a.64.64,0,0,0-.456-.186.626.626,0,0,0-.456.191.646.646,0,0,0,0,.912l5.413,5.445H21.62a.646.646,0,0,0-.647.647v.009a.646.646,0,0,0,.647.647h5.222a.646.646,0,0,0,.647-.647V21.621A.646.646,0,0,0,26.842,20.974Z" transform="translate(-5.117 -5.118)"/>
+                    </g>
+                  </g>
+                </svg>
 
 
-                      <button class="buttonFullScreen">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
-                          <g id="Group_2" data-name="Group 2" transform="translate(-924 -207)">
-                            <g id="Icon_ionic-ios-expand" data-name="Icon ionic-ios-expand" transform="translate(930.5 213.628)">
-                              <path id="Path_1" data-name="Path 1" d="M6.753,5.8h3.616a.646.646,0,0,0,.647-.647V5.147a.646.646,0,0,0-.647-.647H5.147a.646.646,0,0,0-.647.647v5.222a.646.646,0,0,0,.647.647h.009a.646.646,0,0,0,.647-.647V6.753l5.45,5.413a.64.64,0,0,0,.456.186.626.626,0,0,0,.456-.191.646.646,0,0,0,0-.912Z" transform="translate(0 0)"/>
-                              <path id="Path_2" data-name="Path 2" d="M26.842,4.5H21.62a.646.646,0,0,0-.647.647v.009a.646.646,0,0,0,.647.647h3.616l-5.413,5.45a.647.647,0,0,0,.912.917l5.45-5.417v3.616a.646.646,0,0,0,.647.647h.009a.646.646,0,0,0,.647-.647V5.147A.646.646,0,0,0,26.842,4.5Z" transform="translate(-5.117)"/>
-                              <path id="Path_3" data-name="Path 3" d="M11.709,19.631a.64.64,0,0,0-.456.186L5.8,25.235V21.619a.646.646,0,0,0-.647-.647H5.147a.646.646,0,0,0-.647.647V26.84a.646.646,0,0,0,.647.647h5.222a.646.646,0,0,0,.647-.647v-.009a.646.646,0,0,0-.647-.647H6.753l5.413-5.45a.647.647,0,0,0-.456-1.1Z" transform="translate(0 -5.116)"/>
-                              <path id="Path_4" data-name="Path 4" d="M26.842,20.974h-.009a.646.646,0,0,0-.647.647v3.616l-5.45-5.413a.64.64,0,0,0-.456-.186.626.626,0,0,0-.456.191.646.646,0,0,0,0,.912l5.413,5.445H21.62a.646.646,0,0,0-.647.647v.009a.646.646,0,0,0,.647.647h5.222a.646.646,0,0,0,.647-.647V21.621A.646.646,0,0,0,26.842,20.974Z" transform="translate(-5.117 -5.118)"/>
-                            </g>
-                          </g>
-                        </svg>
+              </button>
 
 
-                      </button>
 
                       <button type="button" name="button" class="buttonBackHome" onclick="goBack()">
 
@@ -775,11 +766,12 @@
       <div class="project-view-container">
 
         <div id="iframe_container">
-        <iframe src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F7aTXgt5wc9pTmazdKlZAX1%2FFlexre%3Fnode-id%3D34%253A2%26viewport%3D689%252C105%252C0.12460010498762131%26scaling%3Dmin-zoom%26hide-ui=1" allowfullscreen></iframe>
+        <!-- place element here once master elements have been loaded -->
         </div>
 
 
     </div>
+
 
 
       <script type="text/javascript">
@@ -800,13 +792,11 @@
 
 
 
-        var iframe = document.querySelector('iframe');
-        var w = window.innerWidth*.65;
-        var h = w*.6625;
-        iframe.setAttribute('width', w);
-        iframe.setAttribute('height', h);
 
 
+
+
+        buildIframe('https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F7aTXgt5wc9pTmazdKlZAX1%2FFlexre%3Fnode-id%3D34%253A2%26viewport%3D689%252C105%252C0.12460010498762131%26scaling%3Dcontain%26hide-ui=1')
 
 
       </script>
@@ -895,7 +885,7 @@
         //listeners have to be declared on templete load
 
 
-
+        //define the size of the svg
         var svg = document.querySelector('#Group_9');
         var w = window.innerWidth*.6525;
         var h = w*1.272;
@@ -903,16 +893,7 @@
         svg.setAttribute('height', h);
 
 
-        // function printdiv(printpage) {
-        //     var headstr = "<html><head><title></title></head><body>";
-        //     var footstr = "</body>";
-        //     var newstr = document.all.item(printpage).innerHTML;
-        //     var oldstr = document.body.innerHTML;
-        //     document.body.innerHTML = headstr + newstr + footstr;
-        //     window.print();
-        //     // document.body.innerHTML = oldstr;
-        //     return false;
-        // }
+
 
 
         printSVG = () => {
@@ -920,18 +901,6 @@
               let newSVG = svg
               let innerContents = newSVG.outerHTML;
               // let innerContents = svg.outerHTML;
-
-
-
-
-              // let all_css =  window.getComputedStyle(svg);
-              // console.log(all_css);
-              // let css_font = all_css.getPropertyValue('font-family');
-              // all_css.setProperty('width', '612px', "important")
-              // all_css.PropertyValue('width') = '612px';
-              // all_css.getPropertyValue('height') = '792px';
-              // let css_width = ;
-              // let css_height = all_css.getPropertyValue('height');
 
               console.log(innerContents);
 
@@ -969,7 +938,6 @@
     </div>
 
   </template>
-
 
 
 </body>
